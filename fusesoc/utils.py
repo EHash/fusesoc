@@ -9,10 +9,11 @@ if sys.version[0] == '2':
 logger = logging.getLogger(__name__)
 
 class Launcher:
-    def __init__(self, cmd, args=[], cwd=None):
+    def __init__(self, cmd, args=[], cwd=None, stdout=None):
         self.cmd      = cmd
         self.args     = args
         self.cwd      = cwd
+        self.stdout   = stdout
 
     def run(self):
         logger.debug(self.cwd)
@@ -20,7 +21,8 @@ class Launcher:
         try:
             subprocess.check_call([self.cmd] + self.args,
                                   cwd = self.cwd,
-                                  stdin=subprocess.PIPE),
+                                  stdin=subprocess.PIPE,
+                                  stdout=self.stdout),
         except FileNotFoundError:
             raise RuntimeError("Command '" + self.cmd + "' not found. Make sure it is in $PATH")
         except subprocess.CalledProcessError:
