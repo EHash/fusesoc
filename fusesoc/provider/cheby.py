@@ -43,11 +43,9 @@ class Cheby(Provider):
         with open(gen_vhdl_file, 'w+') as f:
             args = ['--gen-vhdl', core_file]
             Launcher('cheby', args, cwd=local_dir, stdout=f).run()
-            f.close()
         if gen_file_type is None or gen_file_type == 'verilogSource':
             with open(gen_verilog_file, 'w+') as f:
                 args = [gen_vhdl_file, gen_verilog_file]
                 Launcher('vhd2vl', args, cwd=local_dir).run()
                 os.remove(gen_vhdl_file)
-                f.close()
 
