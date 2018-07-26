@@ -1,6 +1,8 @@
+from __future__ import print_function
 import logging
 import os
 import shutil
+import fileinput
 from fusesoc.provider.provider import Provider
 from fusesoc.utils import Launcher
 
@@ -48,4 +50,9 @@ class Cheby(Provider):
                 args = [gen_vhdl_file, gen_verilog_file]
                 Launcher('vhd2vl', args, cwd=local_dir).run()
                 os.remove(gen_vhdl_file)
+            # vhd2vl does not convert between true/false in VHDL to 1/0 in Verilog
+            f = fileinput.input(gen_verilog_file, inplace=True)
+            for line in f:
+                print(line.replace('true', '1').replace('false', '0'), end='')
+            f.close()
 
