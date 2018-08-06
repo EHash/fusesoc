@@ -28,7 +28,8 @@ A core (usually the system core) can add the following files:
 """
 class Vivado(Edatool):
 
-    tool_options = {'members' : {'part' : 'String'}}
+    tool_options = {'members' : {'part' : 'String',
+                                 'hw_device' : 'String'}}
 
     argtypes = ['vlogdefine', 'vlogparam']
 
