@@ -2,9 +2,9 @@
 
 TARGET   := test_icestorm_0
 PCF_FILE := pcf_file.pcf
-PNR      ?= arachne
-ARACHNE_PNR_OPTIONS := 
-NEXTPNR_OPTIONS     := 
+PNR      ?= next
+ARACHNE_PNR_OPTIONS := a few arachne_pnr_options
+NEXTPNR_OPTIONS     := multiple nextpnr_options
 
 all: $(TARGET).bin
 
