@@ -58,7 +58,7 @@ class Newad2wb(Provider):
                     '-o', gen_newad_auto_file,
                     '-a', gen_newad_addr_map_file,
                     '-b', '0',
-                    '-l', '-w', '23', '-d', newad_dirs]
+                    '-l', '-m', '-w', '23', '-d', newad_dirs]
             Launcher('newad.py', args, cwd=local_dir).run()
             # Cheby to VHDL CSR
             with open(gen_vhdl_csr_file, 'w+') as f:
